@@ -1,5 +1,50 @@
 body {
+	font-family: sans-serif;
+}
+
+a, a:hover {
+	text-decoration: none;
+}
+
+div.chatroom {
+	position: fixed;
+	width: 20%;
+	min-width: 120px;
+	top: 0px;
+	left: 0px;
+	height: 100%;
 	background: #4466EE;
 	color: white;
-	font-family: sans-serif;
+}
+
+.chatroom a:visited {
+	color: white;
+}
+
+div.messagearea {
+	position: fixed;
+	top: 0px;
+	left: 20%;
+	background: white;
+	height: 100%;
+	width: 80%;
+}
+
+div.message {
+	background: white;
+	color: black;
+	width: 100%;
+}
+
+div.message:nth-child(even) {
+	background: #AAAAAA;
+}
+
+div.messageauthor {
+	display: inline;
+}
+
+div.messagetime {
+	display: inline;
+	float: right;
 }

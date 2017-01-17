@@ -1,1 +1,21 @@
-<h1>Bloc Chat</h1>
+<section class="chat-room">
+	<div class="chatroom">
+		<h1>{{ home.pageTitle }}</h1>
+		<div class="room-name" ng-repeat="room in home.rooms"><a ui-sref="home" ng-click="switchChats({{ $index }})">{{ room.$value }}</a></div>
+	</div>
+	<div class="chatroom-placeholder"></div>
+</section>
+<section class="message-area">
+	<div class="messagearea">
+		<div class="message">
+			<div class="messageauthor">Alex Gould</div>
+			<div class="messagetime"><em>9:14pm</em></div>
+			<p class="messagetext">Sample message #1</p>
+		</div>
+		<div class="message">
+			<div class="messageauthor">Zach Zimbler</div>
+			<div class="messagetime"><em>9:15pm</em></div>
+			<p class="messagetext">Sample Message #2</p>
+		</div>
+	</div>
+</section>
