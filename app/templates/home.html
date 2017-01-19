@@ -1,9 +1,22 @@
 <section class="chat-room">
 	<div class="chatroom">
 		<h1>{{ home.pageTitle }}</h1>
-		<div class="room-name" ng-repeat="room in home.rooms"><a ui-sref="home" ng-click="switchChats({{ $index }})">{{ room.$value }}</a></div>
+		<button ng-click="home.newRoomModal()" class="newroombutton">Create New Chat Room</button>
+		<div class="roomname" ng-repeat="room in home.rooms"><a ui-sref="home" ng-click="switchChats({{ $index }})">{{ room.$value }}</a></div>
+		<div class="errorbar" ng-show="home.showErrorBar" id="errorMsgBar"></div>
 	</div>
 	<div class="chatroom-placeholder"></div>
+</section>
+<section class="new-room-modal">
+	<div class="newroommodal" ng-show="home.showNewRoomModal">
+		<h2 class="modaltitle">Create New Chat Room</h2>
+		<p class="modaldescription">Enter a room name (cannot be "default"):</p>
+		<form name="newroom" ng-submit="room.createNewRoom()">
+			<input type="text" placeholder="Your room name here" class="modaltextbox" id="newRoomModalTextbox">
+			<button type="button" ng-click="room.closeNewRoomModal()" class="modalreset">Cancel</button>
+			<button type="submit" class="modalsubmit">Create Room</button>
+		</form>
+	</div>
 </section>
 <section class="message-area">
 	<div class="messagearea">
