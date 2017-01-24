@@ -8,8 +8,8 @@ a, a:hover {
 
 div.chatroom {
 	position: fixed;
-	width: 20%;
-	min-width: 120px;
+	width: 30%;
+	min-width: 150px;
 	top: 0px;
 	left: 0px;
 	height: 100%;
@@ -18,7 +18,7 @@ div.chatroom {
 	overflow-y: scroll;
 }
 
-.chatroom a:visited {
+.chatroom a, .chatroom a:hover, .chatroom a:visited {
 	color: white;
 }
 
@@ -47,6 +47,12 @@ div.errorbar {
 	height: 75px;
 	position: absolute;
 	bottom: 0;
+	visibility: hidden;
+}
+
+input.modaltextbox {
+	display: block;
+	margin-bottom: 10px;
 }
 
 div.messagearea {

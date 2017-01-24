@@ -1,0 +1,9 @@
+<div class="modal-header">
+	<h2 class="modal-title">Create New Chat Room</h2>
+</div>
+<div class="modal-body">
+	<p class="modaldescription">Enter a room name (cannot be "default"):</p>
+	<input type="text" placeholder="Your room name here" class="modaltextbox" id="newRoomModalTextbox">
+	<button type="button" ng-click="nrmCtrl.cancel()" class="btn btn-warning">Cancel</button>
+	<button type="submit" class="btn btn-primary" ng-click="nrmCtrl.ok()">Create Room</button>
+</div>

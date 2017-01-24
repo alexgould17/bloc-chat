@@ -1,35 +1,31 @@
 (function() {
-	function HomeCtrl(Room) {
+	function HomeCtrl(Room, Error, $uibModal) {
 		this.pageTitle = "Bloc Chat";
 		this.rooms = Room.all;
-		this.showNewRoomModal = false;
-		this.showErrorBar = false;
 		
-		this.closeNewRoomModal = function() {
-			this.showNewRoomModal = false;
+		this.openNewRoomModal = function() {
+			var modalInsatnce = $uibModal.open({
+				templateUrl: '/templates/newroommodal.html',
+				controller: 'NewRoomModalCtrl',
+				controllerAs: 'nrmCtrl',
+				size: 'sm'
+			});
+			Error.clearError();
+			
+			modalInsatnce.result.then(function() {
+				createNewRoom(document.getElementById('newRoomModalTextbox').value);
+			}, function () {
+				Error.newErrorMessage("Cancelled");
+			});
 		};
 		
-		this.createNewRoom = function() {
-			var roomName = document.getElementById('newRoomModalTextbox').value;
-			var roomNameWasValid = Room.newRoom(name);
-			if(roomNameWasValid == -2)
-				roomNameWasValid = Room.newRoom(name.toString());
-			if(roomNameWasValid == -1) {
-				errorMessage('Room name cannot be "Default"!');
-			else if(roomNameWasValid == 0) {
-				this.closeNewRoomModal();
-				this.showErrorBar = false;
-			}
-		};
-		
-		var errorMessage = function(message) {
-			var errorBar = document.getElementById("errorMsgBar");
-			errorBar.innerHTML = message;
-			this.showErrorBar = true;
+		var createNewRoom = function(name) {
+			Room.newRoom(name);
+			Error.clearError();
 		};
 	}
 	
 	angular
 		.module('blocChat')
-		.controller('HomeCtrl', ['Room', HomeCtrl]);
+		.controller('HomeCtrl', ['Room', 'Error', '$uibModal', HomeCtrl]);
 })();

@@ -4,12 +4,13 @@
 		var rooms = $firebaseArray(ref);
 		
 		var addChat = function(name) {
-			if(typeof name != "string")
-				return -2;
-			else if(name.toLowerCase == "default")
-				return -1;
-			rooms.$add({ test: name });
-			return 0;
+			rooms.$add(name).then(function(ref) {
+				var id = ref.key;
+				console.log("Added record with id " + id);
+				rooms.$indexFor(id);
+			}, function(ref){
+				console.log("Adding data record failed!");
+			});
 		};
 		
 		return {
