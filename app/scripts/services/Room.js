@@ -6,7 +6,6 @@
 		var addChat = function(name) {
 			rooms.$add(name).then(function(ref) {
 				var id = ref.key;
-				console.log("Added record with id " + id);
 				rooms.$indexFor(id);
 			}, function(ref){
 				console.log("Adding data record failed!");

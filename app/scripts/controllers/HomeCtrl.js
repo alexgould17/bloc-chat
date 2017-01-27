@@ -1,7 +1,10 @@
 (function() {
-	function HomeCtrl(Room, Error, $uibModal) {
+	function HomeCtrl($scope, Room, Error, Message, $uibModal) {
 		this.pageTitle = "Bloc Chat";
 		this.rooms = Room.all;
+		this.messages = [];
+		
+		$scope.activeRoom = '';
 		
 		this.openNewRoomModal = function() {
 			var modalInsatnce = $uibModal.open({
@@ -19,6 +22,12 @@
 			});
 		};
 		
+		this.setActiveRoom = function(roomName, roomId) {
+			$scope.activeRoom = roomName;
+			document.getElementById('messageAreaTitleH2').innerHTML = roomName;
+			this.messages = Message.getRoomById(roomId);
+		};
+		
 		var createNewRoom = function(name) {
 			Room.newRoom(name);
 			Error.clearError();
@@ -27,5 +36,5 @@
 	
 	angular
 		.module('blocChat')
-		.controller('HomeCtrl', ['Room', 'Error', '$uibModal', HomeCtrl]);
+		.controller('HomeCtrl', ['$scope', 'Room', 'Error', 'Message', '$uibModal', HomeCtrl]);
 })();

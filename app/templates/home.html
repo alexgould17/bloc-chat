@@ -2,7 +2,7 @@
 	<div class="chatroom">
 		<h1>{{ home.pageTitle }}</h1>
 		<button ng-click="home.openNewRoomModal()" class="newroombutton">Create New Chat Room</button>
-		<div class="roomname" ng-repeat="room in home.rooms"><a ng-click="">{{ room.$value }}</a></div>
+		<div class="roomname" ng-repeat="room in home.rooms"><a ng-click="home.setActiveRoom(room.$value, room.$id)">{{ room.$value }}</a></div>
 		<div class="errorbar" id="errorMsgBar"></div>
 	</div>
 	<div class="chatroom-placeholder"></div>
@@ -10,15 +10,13 @@
 
 <section class="message-area">
 	<div class="messagearea">
-		<div class="message">
-			<div class="messageauthor">Alex Gould</div>
-			<div class="messagetime"><em>9:14pm</em></div>
-			<p class="messagetext">Sample message #1</p>
+		<div class="messageareatitle">
+			<h2 class="messageareah2" id="messageAreaTitleH2">No Room Loaded</h2>
 		</div>
-		<div class="message">
-			<div class="messageauthor">Zach Zimbler</div>
-			<div class="messagetime"><em>9:15pm</em></div>
-			<p class="messagetext">Sample Message #2</p>
+		<div class="message" ng-repeat="message in home.messages">
+			<div class="messageauthor">Author: {{ message.username }}</div>
+			<div class="messagetime"><em>Time sent: {{ message.sentAt }}</em></div>
+			<p class="messagetext">Content: {{ message.content }}</p>
 		</div>
 	</div>
 </section>
