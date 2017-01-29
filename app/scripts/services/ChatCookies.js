@@ -7,7 +7,7 @@
 				controller: function($uibModalInstance) {
 					this.ok = function() {
 						var name = document.getElementById('usernameModalTextbox').value;
-						if(!(/^\s+$/.test(name) || name == '')) {
+						if(!(/^\s+$/.test(name) || name === '')) {
 							$uibModalInstance.close(name);
 						}
 					};
@@ -19,7 +19,6 @@
 			modalInsatnce.result.then(function(chatUsername) {
 				$cookies.put('blocChatCurrentUser', chatUsername);
 				currentUser = chatUsername;
-				
 			}, function () {});
 		}
 	}

@@ -15,8 +15,13 @@
 		</div>
 		<div class="message" ng-repeat="message in home.messages">
 			<div class="messageauthor">Author: {{ message.username }}</div>
-			<div class="messagetime"><em>Time sent: {{ message.sentAt }}</em></div>
+			<div class="messagetime"><em>Time sent: {{ message.sentAt | timesent }}</em></div>
 			<p class="messagetext">Content: {{ message.content }}</p>
 		</div>
+		<div class="messagebox">
+			<input type="text" placeholder="Type your message here" class="messageboxtextbox" id="chatTextbox">
+			<button type="submit" class="messageboxbutton" ng-click="home.sendMessage()">Send</button>
+		</div>
+		<div class="messageboxplaceholder"></div>
 	</div>
 </section>

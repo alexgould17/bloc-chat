@@ -13,6 +13,7 @@
 		
 		Error.newErrorMessage = function(message) {
 			errorBar.innerHTML = message;
+			console.log(message);
 			show();
 		};
 		

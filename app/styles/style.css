@@ -25,6 +25,7 @@ div.chatroom {
 
 button.newroombutton {
 	border-radius: 3px;
+	border-style: none;
 	background: white;
 	color: #4466EE;
 	margin-left: 5px;
@@ -100,4 +101,34 @@ div.messageauthor {
 div.messagetime {
 	display: inline;
 	float: right;
+}
+
+div.messagebox, div.messageboxplaceholder {
+	width: 100%;
+	height: 50px;
+	bottom: 0;
+	right: 0;
+}
+
+div.messagebox {
+	position: absolute;
+}
+
+input.messageboxtextbox {
+	width: 600px;
+	height: 100%;
+	display: inline;
+	border, margin, padding: 0px;
+}
+
+button.messageboxbutton {
+	width: 75px;
+	height: 100%;
+	display: inline;
+	background: gold;
+	color: black;
+	text-emphasis: bold;
+	border, margin, padding: 0px;
+	border-radius: 3px;
+	border-style: none;
 }
