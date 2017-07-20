@@ -1,5 +1,5 @@
 (function() {
-	function HomeCtrl($scope, Room, Error, Message, $uibModal, $cookies) {
+	function HomeCtrl($scope, Room, Error, Message, $uibModal, $cookies, $location, $anchorScroll, $timeout) {
 		this.pageTitle = "Bloc Chat";
 		this.rooms = Room.all;
 		this.messages = [];
@@ -26,12 +26,14 @@
 		this.setActiveRoom = function(roomName, roomId) {
 			$scope.activeRoom = roomName;
 			activeRoomId = roomId;
+			//this.roomTitle = roomName
 			document.getElementById('messageAreaTitleH2').innerHTML = roomName;
 			this.messages = Message.getRoomById(activeRoomId);
+			scrollToBottom();
 		};
 		
-		this.sendMessage = function() {
-			var txt = document.getElementById('chatTextbox').value
+		this.sendMessage = function(message) {
+			var txt = message;
 			var usr = $cookies.get('blocChatCurrentUser');
 			if(/^\s+$/.test(txt)) {
 				Error.newErrorMessage('Message text cannot be only whitespace!');
@@ -47,6 +49,9 @@
 				return false;
 			} else {
 				Message.send(txt, usr, activeRoomId);
+				Error.clearError();
+				this.messageText = "";
+				scrollToBottom();
 			}
 		}
 		
@@ -54,9 +59,18 @@
 			Room.newRoom(name);
 			Error.clearError();
 		};
+		
+		var scrollToBottom = function() {
+			$timeout(function(){
+				var msgArea = document.getElementById("messageArea");
+				msgArea.scrollTop = msgArea.scrollHeight;
+				console.log(msgArea.scrollHeight);
+			}, 0);
+
+		};
 	}
 	
 	angular
 		.module('blocChat')
-		.controller('HomeCtrl', ['$scope', 'Room', 'Error', 'Message', '$uibModal', '$cookies', HomeCtrl]);
+		.controller('HomeCtrl', ['$scope', 'Room', 'Error', 'Message', '$uibModal', '$cookies', '$location', '$anchorScroll', '$timeout', HomeCtrl]);
 })();

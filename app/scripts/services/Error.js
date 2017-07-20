@@ -1,25 +1,18 @@
 (function() {
 	function Error() {
 		var Error = {};
-		var errorBar = document.getElementById("errorMsgBar");
-		
-		var show = function() {
-			errorBar.setAttribute('visibility','visible');
-		};
-		
-		var hide = function() {
-			errorBar.setAttribute('visibility', 'hidden');
-		};
 		
 		Error.newErrorMessage = function(message) {
+			var errorBar = document.getElementById("errorMsgBar");
 			errorBar.innerHTML = message;
+			errorBar.setAttribute('background', '#CC4422');
 			console.log(message);
-			show();
 		};
 		
 		Error.clearError = function() {
+			var errorBar = document.getElementById("errorMsgBar");
 			errorBar.innerHTML = '';
-			hide();
+			errorBar.setAttribute('background', '#4466EE');
 		};
 		
 		return Error;

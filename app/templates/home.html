@@ -9,7 +9,7 @@
 </section>
 
 <section class="message-area">
-	<div class="messagearea">
+	<div class="messagearea" id="messageArea">
 		<div class="messageareatitle">
 			<h2 class="messageareah2" id="messageAreaTitleH2">No Room Loaded</h2>
 		</div>
@@ -18,10 +18,9 @@
 			<div class="messagetime"><em>Time sent: {{ message.sentAt | timesent }}</em></div>
 			<p class="messagetext">Content: {{ message.content }}</p>
 		</div>
-		<div class="messagebox">
-			<input type="text" placeholder="Type your message here" class="messageboxtextbox" id="chatTextbox">
-			<button type="submit" class="messageboxbutton" ng-click="home.sendMessage()">Send</button>
-		</div>
-		<div class="messageboxplaceholder"></div>
+		<div class="messageboxplaceholder" id="bottom"></div>
+		<form ng-submit="home.sendMessage(home.messageText)" class="messagebox">
+				<input type="text" placeholder="Type your message here" class="messageboxtextbox" id="chatTextbox" ng-model="home.messageText">
+		</form>
 	</div>
 </section>
